@@ -1,0 +1,16 @@
+questions = {
+'dưới 18 tuổi':1,
+ '18-24':2,
+ '24-49':3,
+ 'nam':1,
+ 'nữ':2,
+ 'thpt trở xuống':1,
+ 'đại học/cao đẳng':2,
+ 'sau đại học':3,
+ 'dưới 1 triệu':1,
+ '1-10 triệu':2,
+ 'trên 10 triệu':3,
+ 'ít hơn 1 giờ':1,
+ '1-3 giờ':2,
+ 'nhiều hơn 3 giờ':3,
+}
