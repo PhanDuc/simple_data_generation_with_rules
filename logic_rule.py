@@ -65,7 +65,11 @@ def data_generating(df_as_nested_list, n_try=5):
                         """
                         [ [0,1,2,3,current], [],[] ]
                         """
-                        gen_data.append(combinations[-1][current])
+                        if "nam" in combinations[-1][current]:
+                            gender = choice(["nam", "nữ"])
+                            gen_data.append(gender)
+                        else:
+                            gen_data.append(combinations[-1][current])
                         current += 1
                     else:
                         # "rd" in the value
