@@ -56,7 +56,7 @@ def data_generating(df_as_nested_list, n_try=5):
                         break
                     if "rd" not in val and val != "":
                         val = val.strip()
-                        if val == "nam":
+                        if val == "nam" or val == "nữ":
                             val = choice(["nam", "nữ"])
                         gen_data.append(questions.get(val, ""))
                         current += 1
@@ -64,7 +64,7 @@ def data_generating(df_as_nested_list, n_try=5):
                         """
                         [ [0,1,2,3,current], [],[] ]
                         """
-                        if "nam" in questions.get(combinations[-1][current], ""):
+                        if questions.get(combinations[-1][current], "") in ["nam", "nữ"]:
                             gender = choice(["nam", "nữ"])
                             gen_data.append(gender)
                         else:
