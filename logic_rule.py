@@ -37,8 +37,7 @@ def data_generating(df_as_nested_list, n_try=5):
 
         # remove trailing space
         new_row = [value.strip() for value in new_row]
-
-        print(new_row)
+        
         if "th" not in new_row[0]:
             try:
                 if new_row[0] != "":
