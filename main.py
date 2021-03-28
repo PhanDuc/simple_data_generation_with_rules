@@ -26,8 +26,6 @@ if __name__ == "__main__":
         listData = prepared_file_uploaded(file_uploaded)
         dataCombination = data_generating(listData, n_try=n_try)
         data2export = export2file(dataCombination)
-        data2export.to_csv("/media/Another/Computer_Science_Project/streamlit_data_generator/results"
-                           ".csv", index=False)
         st.info("Data Overview!")
         st.info(f"Data after generated had {data2export.shape[0]} rows")
         st.dataframe(data2export.head(10))
