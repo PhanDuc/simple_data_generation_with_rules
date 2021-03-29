@@ -37,7 +37,8 @@ def data_generating(df_as_nested_list, n_try=5):
 
         # remove trailing space
         new_row = [value.strip() for value in new_row]
-        
+
+        print(new_row)
         if "th" not in new_row[0]:
             try:
                 if new_row[0] != "":
@@ -64,26 +65,35 @@ def data_generating(df_as_nested_list, n_try=5):
                         """
                         [ [0,1,2,3,current], [],[] ]
                         """
-                        if questions.get(combinations[-1][current], "") in ["nam", "nữ"]:
-                            gender = choice(["nam", "nữ"])
-                            gen_data.append(gender)
-                        else:
-                            gen_data.append(combinations[-1][current])
+                        gen_data.append(combinations[-1][current])
                         current += 1
                     else:
                         # "rd" in the value
                         # remove "rd" in the name
                         new_val = val.replace("rd","").strip().split(",")
                         new_val = [int(number) for number in new_val]
-                        gen_data.append(choice(new_val))
+                        # gen_data.append(choice(new_val))
+                        gen_data.append(new_val)
                         current += 1
+
 
                 combinations.append(gen_data)
                 number_generation += 1
         else:
             pass
 
-    return combinations
+    combinations_processed = process_nested_list(combinations)
+
+    return combinations_processed
+
+
+def process_nested_list(combinations):
+    random_combination = []
+    for item in combinations:
+        sample = [choice(val) if isinstance(val, list) else val for val in item
+                  ]
+        random_combination.append(sample)
+    return random_combination
 
 
 def export2file(combinations):
@@ -96,42 +106,3 @@ def export2file(combinations):
     data_generated = pd.DataFrame(data=unique_combination, columns=columns_name)
     data_generated.astype(int)
     return data_generated
-
-# data = """
-# Assets:Bank:Car
-# Assets:Bank:House
-# Assets:Savings:Emergency
-# Assets:Savings:Goals:Roof
-# Assets:Reserved
-# """
-# J = []
-#
-# for line in data.split('\n'):
-#     if not line: continue
-#
-#     # split the line into parts, start at the root list
-#     # is there a dict here for this part?
-#     #   yes? cool, dive into it for the next loop iteration
-#     #   no? add one, with a list, ready for the next loop iteration
-#     #    (unless we're at the final part, then stick it in the list
-#     #     we made/found in the previous loop iteration)
-#
-#     parts = line.split(':')
-#     parent_list, current_list = J, J
-#
-#     for index, part in enumerate(parts):
-#         for item in current_list:
-#             if part in item:
-#                 parent_list, current_list = current_list, item[part]
-#                 break
-#         else:
-#             if index == len(parts) - 1:
-#                 # leaf node, add part as string
-#                 current_list.append(part)
-#             else:
-#                 new_list = []
-#                 current_list.append({part:new_list})
-#                 parent_list, current_list = current_list, new_list
-#
-# print(J)
-
