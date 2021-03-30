@@ -27,7 +27,7 @@ if __name__ == "__main__":
         dataCombination = data_generating(listData, n_try=n_try)
         data2export = export2file(dataCombination)
         st.info("Data Overview!")
-        st.info(f"Data after generated had {data2export.shape[0]} rows")
+        st.info(f"Data after generated had {data2export.shape[0]} rows and {data2export.shape[1]} columns")
         st.dataframe(data2export.head(10))
         st.markdown(get_table_download_link_csv(data2export), unsafe_allow_html=True)
 
