@@ -32,8 +32,8 @@ def data_generating(df_as_nested_list, n_try=5):
          ...
          """
         new_row = row[:4] + [value for value in row[4:] if value != ""]
-        if len(new_row) < 13:
-            new_row = new_row + [""] * (13 - len(new_row))
+        if len(new_row) < 31:
+            new_row = new_row + [""] * (31 - len(new_row))
 
         # remove trailing space
         new_row = [value.strip() for value in new_row]
