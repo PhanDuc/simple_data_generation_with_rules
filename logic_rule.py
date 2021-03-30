@@ -31,14 +31,13 @@ def data_generating(df_as_nested_list, n_try=5):
          '',
          ...
          """
-        new_row = row[:4] + [value for value in row[4:] if value != ""]
+        # new_row = row[:4] + [value for value in row[4:]]
+        new_row = [value for value in row if value != ""]
         if len(new_row) < 31:
             new_row = new_row + [""] * (31 - len(new_row))
 
         # remove trailing space
         new_row = [value.strip() for value in new_row]
-
-        print(new_row)
         if "th" not in new_row[0]:
             try:
                 if new_row[0] != "":
@@ -53,8 +52,8 @@ def data_generating(df_as_nested_list, n_try=5):
             while number_generation < n_try:
                 gen_data = [starting_with_number]
                 for current, val in enumerate(new_row[1:]):
-                    if current > 11:
-                        break
+                    # if current > 11:
+                    #     break
                     if "rd" not in val and val != "":
                         val = val.strip()
                         if val == "nam" or val == "nữ":
@@ -101,7 +100,9 @@ def export2file(combinations):
     unique_combination = list(k for k,_ in itertools.groupby(combinations))
 
     columns_name = ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8_1_1', 'C8_1_2', 'C8_1_3',
-           'C8_1_4','C8_1_5', 'C9_1']
+           'C8_1_4', 'C8_2_1', 'C8_2_2', 'C8_2_3', 'C8_2_4', 'C8_2_5', 'C8_3_1',
+       'C8_3_2', 'C8_3_3', 'C8_4_1', 'C8_4_2', 'C8_4_3', 'C8_4_4', 'C8_5_1',
+       'C8_5_2', 'C8_5_3', 'C9_1', 'C9_2', 'C9_3', 'C9_4', 'C9_5']
 
     data_generated = pd.DataFrame(data=unique_combination, columns=columns_name)
     data_generated.astype(int)
